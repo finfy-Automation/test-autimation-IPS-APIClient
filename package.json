@@ -1,0 +1,21 @@
+{
+  "name": "test-autimation-ips-apiclient",
+  "version": "1.0.0",
+  "description": "Testes E2E dos principais cenários da Merchant API Cliente do Online IPS",
+  "main": "index.js",
+  "scripts": {
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "eslint": "^8.47.0",
+    "eslint-config-google": "^0.14.0",
+    "jest": "^29.6.3",
+    "supertest": "^6.3.3"
+  },
+  "dependencies": {
+    "dotenv": "^16.3.1"
+  }
+}
