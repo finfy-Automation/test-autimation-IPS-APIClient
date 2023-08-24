@@ -4,7 +4,8 @@
   "description": "Testes E2E dos principais cenários da Merchant API Cliente do Online IPS",
   "main": "index.js",
   "scripts": {
-    "test": "jest"
+    "test": "jest",
+    "lint": "eslint test"
   },
   "keywords": [],
   "author": "",

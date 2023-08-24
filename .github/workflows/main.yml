@@ -1,0 +1,14 @@
+name: Tests Run
+on:
+   push:
+    branches:
+      - 'main'
+jobs:
+  test-run-1:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: Cypress run
+        with:
+          command: npm run test
