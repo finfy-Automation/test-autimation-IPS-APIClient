@@ -4,6 +4,6 @@ jobs:
   cypress-run-1:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Lint
         with:
           command: npm run lint
