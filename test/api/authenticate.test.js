@@ -12,6 +12,7 @@ describe('POST - Customer Access (Login)', () => {
         'clientId': clientId,
         'clientSecret': clientSecret,
       })
+    process.env.JWT = response.body.token
     expect(response.status).toBe(201)
     expect(response.body).toBeDefined()
     expect(response.body).toHaveProperty('expiresIn')
@@ -43,5 +44,24 @@ describe('POST - Customer Access (Login)', () => {
     expect(response.body.message).toEqual('Validation Error')
     expect(response.body.shortMessage).toEqual('validationError')
     expect(response.body).toHaveProperty('details')
+  })
+})
+describe('POST - Authorizer Validation', () => {
+  test('T04 - Successfull - Should return status 200 and not return Authorization error.', async () => {
+    const response = await superTest(baseUrl)
+      .post('v1/auth/test')
+      .set('authorization', `Bearer ${process.env.JWT}`)
+    expect(response.status).toBe(200)
+    expect(response.body).toBeDefined()
+    expect(response.body).toEqual('ok')
+  })
+  test('T05 - Not Authorized - Should return 403 status and Authorization error message.', async () => {
+    const jwt = 'r' + process.env.JWT.slice(1)
+    const response = await superTest(baseUrl)
+      .post('v1/auth/test')
+      .set('authorization', `Bearer ${jwt}`)
+    expect(response.status).toBe(403)
+    expect(response.body).toBeDefined()
+    expect(response.body.message).toEqual('User is not authorized to access this resource with an explicit deny')
   })
 })
